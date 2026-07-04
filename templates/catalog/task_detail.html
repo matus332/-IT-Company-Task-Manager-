@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Task detail</h1>
+  
+  <ul>
+    <li>{{ task.name }}</li>
+    <li>{{ task.description }}</li>
+    <li>{{ task.deadline }}</li>
+    <li>{{ task.priority }}</li>
+    <li><a href="{% url 'catalog:task-type-detail' pk=task.task_type.id %}">{{ task.task_type }}</a></li>
+    {% for worker in task.assignees.all %}
+      <li><a href="{% url 'catalog:worker-detail' pk=worker.id %}">{{ worker }}</a></li>
+    {% empty %}
+      <li>No workers.</li>
+    {% endfor %}
+  </ul>
+  
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Worker detail</h1>
+  
+  <ul>
+    <li>{{ worker.username }}</li>
+    <li>{{ worker.first_name }}</li>
+    <li>{{ worker.last_name }}</li>
+  
+    {% if worker.position %}
+      <li><a href="{% url 'catalog:position-detail' pk=worker.position.id %}">{{ worker.position }}</a></li>
+    {% else %}
+      <li>No position</li>
+    {% endif %}
+  
+    <li>Tasks assigned to this worker:</li>
+  
+    <ul>
+      {% for task in worker.tasks.all %}
+        <li><a href="{% url 'catalog:task-detail' pk=task.id %}">{{ task.name }}</a></li>
+      {% empty %}
+        <li>No tasks</li>
+      {% endfor %}
+    </ul>
+  </ul>
+  
+{% endblock %}

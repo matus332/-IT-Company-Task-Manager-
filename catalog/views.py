@@ -27,7 +27,15 @@ class WorkerListView(generic.ListView):
     queryset = Worker.objects.all().select_related("position")
 
 
+class WorkerDetailView(generic.DetailView):
+    model = Worker
+
+
 class PositionListView(generic.ListView):
+    model = Position
+
+
+class PositionDetailView(generic.DetailView):
     model = Position
 
 
@@ -36,6 +44,14 @@ class TaskTypesListView(generic.ListView):
     context_object_name = "task_types"
 
 
+class TaskTypeDetailView(generic.DetailView):
+    model = TaskType
+
+
 class TaskListView(generic.ListView):
     model = Task
     queryset = Task.objects.select_related("task_type").prefetch_related("assignees")
+
+
+class TaskDetailView(generic.DetailView):
+    model = Task

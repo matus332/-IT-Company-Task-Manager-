@@ -6,7 +6,7 @@
   {% if position_list %}
     <ul>
       {% for position in position_list %}
-        <li>ID:{{ position.id }} "{{ position.name }} "</li>
+        <li><a href="{% url 'catalog:position-detail' pk=position.pk %}">ID:{{ position.id }} "{{ position.name }}"</a></li>
       {% endfor %}
     </ul>
    {% else %}

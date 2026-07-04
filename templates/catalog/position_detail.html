@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Position detail</h1>
+  
+  <ul>
+    <li>{{ position.name }}</li>
+    <li>Workers with this position</li>
+    <ul>
+      {% for worker in position.workers.all %}
+        <li><a href="{% url 'catalog:worker-detail' pk=worker.pk %}">{{ worker.username }}</a></li>
+      {% empty %}
+        <li>No workers</li>
+      {% endfor %}
+    </ul>
+  </ul>
+  
+{% endblock %}

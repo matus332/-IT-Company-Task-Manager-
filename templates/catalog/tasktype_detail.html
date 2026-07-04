@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>TaskType detail</h1>
+  
+  <ul>
+    <li>{{ tasktype.name }}</li>
+    <li>Tasks with this type:</li>
+    <ul>
+      {% for task in tasktype.tasks.all %}
+        <li><a href="{% url 'catalog:task-detail' pk=task.pk %}">{{ task.name }}</a></li>
+      {% empty %}
+        <li>No tasks</li>
+      {% endfor %}
+    </ul>
+  </ul>
+{% endblock %}

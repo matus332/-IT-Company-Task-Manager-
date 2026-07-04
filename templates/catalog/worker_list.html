@@ -11,7 +11,7 @@
         <th>Last name</th>
         <th>Position</th>
       </tr>
-      
+
       {% for worker in worker_list %}
         <tr>
           <td>{{ worker.username }}</td>
@@ -20,7 +20,7 @@
           <td>{{ worker.position }}</td>
         </tr>
       {% endfor %}
-    
+
     </table>
   {% else %}
     <div class="alert alert-info">

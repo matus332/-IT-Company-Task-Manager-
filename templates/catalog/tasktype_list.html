@@ -6,7 +6,7 @@
   {% if task_types %}
     <ul>
       {% for task in task_types %}
-        <li>ID:{{ task.id }} "{{ task.name }} "</li>
+        <li><a href="{% url 'catalog:task-type-detail' pk=task.id %}">ID:{{ task.id }} "{{ task.name }}"</a></li>
       {% endfor %}
     </ul>
    {% else %}
