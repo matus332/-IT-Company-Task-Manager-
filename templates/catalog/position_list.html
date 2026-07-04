@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Positions</h1>
+
+  {% if position_list %}
+    <ul>
+      {% for position in position_list %}
+        <li>ID:{{ position.id }} "{{ position.name }} "</li>
+      {% endfor %}
+    </ul>
+   {% else %}
+    <div class="alert alert-info">
+      No positions found.
+    </div>
+  {% endif %}
+{% endblock %}

@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.views import generic
 
-from catalog.models import Task, Worker, Position
+from catalog.models import Task, Worker, Position, TaskType
 
 
 def index(request):
@@ -19,3 +20,22 @@ def index(request):
     }
 
     return render(request, "catalog/index.html", context=context)
+
+
+class WorkerListView(generic.ListView):
+    model = Worker
+    queryset = Worker.objects.all().select_related("position")
+
+
+class PositionListView(generic.ListView):
+    model = Position
+
+
+class TaskTypesListView(generic.ListView):
+    model = TaskType
+    context_object_name = "task_types"
+
+
+class TaskListView(generic.ListView):
+    model = Task
+    queryset = Task.objects.select_related("task_type").prefetch_related("assignees")
