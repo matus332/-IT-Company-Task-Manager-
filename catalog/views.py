@@ -36,7 +36,7 @@ def index(request):
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
-
+    paginate_by = 5
 
     def get_context_data(
         self, *, object_list = ..., **kwargs
@@ -44,6 +44,11 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
         context = super().get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
         context["search_form"] = WorkerUsernameSearchForm(initial={"username": username})
+
+        query_params = self.request.GET.copy()
+        query_params.pop("page", None)
+        context["query_params"] = query_params
+
         return context
 
     def get_queryset(self):
@@ -80,6 +85,7 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     context_object_name = "task_types"
+    paginate_by = 5
 
     def get_context_data(
         self, *, object_list = ..., **kwargs
@@ -87,6 +93,11 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
         context["search_form"] = TaskTypeNameSearchForm(initial={"name": name})
+
+        query_params = self.request.GET.copy()
+        query_params.pop("page", None)
+        context["query_params"] = query_params
+
         return context
 
     def get_queryset(self):
@@ -122,6 +133,7 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
+    paginate_by = 5
 
     def get_context_data(
         self, *, object_list = ..., **kwargs
@@ -129,6 +141,11 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
         context["search_form"] = PositionNameSearchForm(initial={"name": name})
+
+        query_params = self.request.GET.copy()
+        query_params.pop("page", None)
+        context["query_params"] = query_params
+
         return context
 
     def get_queryset(self):
@@ -164,6 +181,7 @@ class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
+    paginate_by = 5
 
 
     def get_context_data(
@@ -172,6 +190,11 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
         context["search_form"] = TaskNameSearchForm(initial={"name": name})
+
+        query_params = self.request.GET.copy()
+        query_params.pop("page", None)
+        context["query_params"] = query_params
+
         return context
 
     def get_queryset(self):
