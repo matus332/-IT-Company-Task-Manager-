@@ -4,12 +4,11 @@
   <h1 class="mb-4">Dashboard</h1>
 
   <div class="row mb-4">
-
     <div class="col-md-4">
       <div class="card text-center">
         <div class="card-body">
-          <h5 class="card-title">Workers</h5>
-          <h2>{{ num_worker }}</h2>
+          <h6 class="text-muted">Workers</h6>
+          <h1>{{ num_worker }}</h1>
         </div>
       </div>
     </div>
@@ -17,8 +16,8 @@
     <div class="col-md-4">
       <div class="card text-center">
         <div class="card-body">
-          <h5 class="card-title">Tasks</h5>
-          <h2>{{ num_tasks }}</h2>
+          <h6 class="text-muted">Tasks</h6>
+          <h1>{{ num_tasks }}</h1>
         </div>
       </div>
     </div>
@@ -26,23 +25,22 @@
     <div class="col-md-4">
       <div class="card text-center">
         <div class="card-body">
-          <h5 class="card-title">Positions</h5>
-          <h2>{{ num_position }}</h2>
+          <h6 class="text-muted">Positions</h6>
+          <h1>{{ num_position }}</h1>
         </div>
       </div>
     </div>
-
   </div>
 
   <div class="card">
     <div class="card-body">
-      <h4>Welcome</h4>
+      <h5 class="card-title">Welcome</h5>
       <p>
         IT Company Task Manager helps manage workers, positions,
         task types and project tasks.
       </p>
 
-      <p>
+      <p class="mb-0">
         You visited this page
         <strong>{{ num_visits }}</strong>
         time{{ num_visits|pluralize }}.

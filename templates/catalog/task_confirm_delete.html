@@ -2,8 +2,8 @@
 
 {% block content %}
   <div class="alert alert-danger">
-    <h4>Confirm delete</h4>
-    <p>Are you sure you want to delete this object?</p>
+    <h4>Warning</h4>
+    <p class="mb-0">This action cannot be undone.</p>
   </div>
 
   <form method="post">
@@ -13,7 +13,7 @@
       Yes, delete
     </button>
 
-    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-secondary">
+    <a href="{% url 'catalog:task-list' %}" class="btn btn-secondary">
       Cancel
     </a>
   </form>
