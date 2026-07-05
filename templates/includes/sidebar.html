@@ -1,23 +1,40 @@
-<ul class="sidebar-nav list-group" style="">
-  {% if user.is_authenticated %}
-    <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
-    <li class="list-group-item">
-      <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-link p-0">
-          Logout
-        </button>
-      </form>
-    </li>
-  {% else %}
-    <li class="list-group-item"><a href="{% url 'login' %}">Login</a></li>
-  {% endif %}
+<h4 class="mb-4">IT Company Manager</h4>
 
-  <br>
+{% if user.is_authenticated %}
+  <div class="alert alert-light">
+    <strong>{{ user.username }}</strong>
+  </div>
 
-  <li class="list-group-item"><a href="{% url 'catalog:home-page' %}">Home</a></li>
-  <li class="list-group-item"><a href="{% url 'catalog:worker-list' %}">All workers</a></li>
-  <li class="list-group-item"><a href="{% url 'catalog:task-list' %}">All tasks</a></li>
-  <li class="list-group-item"><a href="{% url 'catalog:position-list' %}">All positions</a></li>
-  <li class="list-group-item"><a href="{% url 'catalog:task-type-list' %}">All tasks types</a></li>
-</ul>
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger btn-block mb-4">
+      Logout
+    </button>
+  </form>
+{% else %}
+  <a href="{% url 'login' %}" class="btn btn-outline-primary btn-block mb-4">
+    Login
+  </a>
+{% endif %}
+
+<div class="list-group">
+  <a href="{% url 'catalog:home-page' %}" class="list-group-item list-group-item-action">
+    Dashboard
+  </a>
+
+  <a href="{% url 'catalog:task-list' %}" class="list-group-item list-group-item-action">
+    Tasks
+  </a>
+
+  <a href="{% url 'catalog:worker-list' %}" class="list-group-item list-group-item-action">
+    Workers
+  </a>
+
+  <a href="{% url 'catalog:position-list' %}" class="list-group-item list-group-item-action">
+    Positions
+  </a>
+
+  <a href="{% url 'catalog:task-type-list' %}" class="list-group-item list-group-item-action">
+    Task Types
+  </a>
+</div>

@@ -1,26 +1,30 @@
 {% extends "base.html" %}
-{% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>
-    Positions
-    <a href="{% url 'catalog:position-create' %}">+</a>
-  </h1>
-  
-  <form method="get" action="">
-    {{ search_form|crispy }}
-    <input type="submit" value="Search" class="btn btn-primary">
+  <div class="page-header">
+    <h1>Positions</h1>
+    <a href="{% url 'catalog:position-create' %}" class="btn btn-primary">
+      Create Position
+    </a>
+  </div>
+
+  <form method="get" class="form-inline mb-3">
+    <input type="text" name="name" value="{{ request.GET.name }}"
+           class="form-control mr-2" placeholder="Search by position name">
+    <button type="submit" class="btn btn-primary">Search</button>
   </form>
 
   {% if position_list %}
-    <ul>
+    <ul class="list-group">
       {% for position in position_list %}
-        <li><a href="{% url 'catalog:position-detail' pk=position.pk %}">ID:{{ position.id }} "{{ position.name }}"</a></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="{% url 'catalog:position-detail' pk=position.pk %}">
+            {{ position.name }}
+          </a>
+        </li>
       {% endfor %}
     </ul>
-   {% else %}
-    <div class="alert alert-info">
-      No positions found.
-    </div>
+  {% else %}
+    <div class="alert alert-info">No positions found.</div>
   {% endif %}
 {% endblock %}

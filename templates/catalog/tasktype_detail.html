@@ -1,21 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    TaskType detail
-    <a href="{% url 'catalog:task-type-update' pk=tasktype.pk %}" class="btn btn-warning">Update</a>
-    <a href="{% url 'catalog:task-type-delete' pk=tasktype.pk %}" class="btn btn-danger">Delete</a>
-  </h1>
-  
-  <ul>
-    <li>{{ tasktype.name }}</li>
-    <li>Tasks with this type:</li>
-    <ul>
-      {% for task in tasktype.tasks.all %}
-        <li><a href="{% url 'catalog:task-detail' pk=task.pk %}">{{ task.name }}</a></li>
-      {% empty %}
-        <li>No tasks</li>
-      {% endfor %}
-    </ul>
-  </ul>
+  <div class="page-header">
+    <h1>{{ tasktype.name }}</h1>
+
+    <div>
+      <a href="{% url 'catalog:task-type-update' pk=tasktype.pk %}" class="btn btn-warning">
+        Update
+      </a>
+      <a href="{% url 'catalog:task-type-delete' pk=tasktype.pk %}" class="btn btn-danger">
+        Delete
+      </a>
+      <a href="{% url 'catalog:task-type-list' %}" class="btn btn-secondary">
+        Back
+      </a>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Task type information</h5>
+      <p><strong>Name:</strong> {{ tasktype.name }}</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Tasks with this type</h5>
+
+      <ul class="list-group">
+        {% for task in tasktype.tasks.all %}
+          <li class="list-group-item">
+            <a href="{% url 'catalog:task-detail' pk=task.pk %}">
+              {{ task.name }}
+            </a>
+          </li>
+        {% empty %}
+          <li class="list-group-item">No tasks with this type.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
 {% endblock %}

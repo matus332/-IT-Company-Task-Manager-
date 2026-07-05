@@ -1,23 +1,65 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    Task detail
-    <a href="{% url 'catalog:task-update' pk=task.pk %}" class="btn btn-warning">Update</a>
-    <a href="{% url 'catalog:task-delete' pk=task.pk %}" class="btn btn-danger">Delete</a>
-  </h1>
-  
-  <ul>
-    <li>{{ task.name }}</li>
-    <li>{{ task.description }}</li>
-    <li>{{ task.deadline }}</li>
-    <li>{{ task.priority }}</li>
-    <li><a href="{% url 'catalog:task-type-detail' pk=task.task_type.id %}">{{ task.task_type }}</a></li>
-    {% for worker in task.assignees.all %}
-      <li><a href="{% url 'catalog:worker-detail' pk=worker.id %}">{{ worker }}</a></li>
-    {% empty %}
-      <li>No workers.</li>
-    {% endfor %}
-  </ul>
-  
+  <div class="page-header">
+    <h1>{{ task.name }}</h1>
+
+    <div>
+      <a href="{% url 'catalog:task-update' pk=task.pk %}" class="btn btn-warning">
+        Update
+      </a>
+      <a href="{% url 'catalog:task-delete' pk=task.pk %}" class="btn btn-danger">
+        Delete
+      </a>
+      <a href="{% url 'catalog:task-list' %}" class="btn btn-secondary">
+        Back
+      </a>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Task information</h5>
+
+      <p><strong>Description:</strong> {{ task.description }}</p>
+      <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+      <p><strong>Priority:</strong> {{ task.get_priority_display }}</p>
+
+      <p>
+        <strong>Status:</strong>
+        {% if task.is_completed %}
+          <span class="badge badge-success">Completed</span>
+        {% elif task.is_overdue %}
+          <span class="badge badge-danger">Overdue</span>
+        {% else %}
+          <span class="badge badge-secondary">In Progress</span>
+        {% endif %}
+      </p>
+
+      <p>
+        <strong>Task type:</strong>
+        <a href="{% url 'catalog:task-type-detail' pk=task.task_type.id %}">
+          {{ task.task_type }}
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Assignees</h5>
+
+      <ul class="list-group">
+        {% for worker in task.assignees.all %}
+          <li class="list-group-item">
+            <a href="{% url 'catalog:worker-detail' pk=worker.id %}">
+              {{ worker }}
+            </a>
+          </li>
+        {% empty %}
+          <li class="list-group-item">No workers assigned.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
 {% endblock %}

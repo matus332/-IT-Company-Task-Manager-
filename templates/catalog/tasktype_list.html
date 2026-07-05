@@ -1,26 +1,30 @@
 {% extends "base.html" %}
-{% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>
-    Task Types
-    <a href="{% url 'catalog:task-type-create' %}">+</a>
-  </h1>
-  
-  <form action="" method="get">
-    {{ search_form|crispy }}
-    <input type="submit" value="Search" class="btn btn-primary">
+  <div class="page-header">
+    <h1>Task Types</h1>
+    <a href="{% url 'catalog:task-type-create' %}" class="btn btn-primary">
+      Create Task Type
+    </a>
+  </div>
+
+  <form method="get" class="form-inline mb-3">
+    <input type="text" name="name" value="{{ request.GET.name }}"
+           class="form-control mr-2" placeholder="Search by task type name">
+    <button type="submit" class="btn btn-primary">Search</button>
   </form>
 
   {% if task_types %}
-    <ul>
-      {% for task in task_types %}
-        <li><a href="{% url 'catalog:task-type-detail' pk=task.id %}">ID:{{ task.id }} "{{ task.name }}"</a></li>
+    <ul class="list-group">
+      {% for task_type in task_types %}
+        <li class="list-group-item">
+          <a href="{% url 'catalog:task-type-detail' pk=task_type.pk %}">
+            {{ task_type.name }}
+          </a>
+        </li>
       {% endfor %}
     </ul>
-   {% else %}
-    <div class="alert alert-info">
-      No task types found.
-    </div>
+  {% else %}
+    <div class="alert alert-info">No task types found.</div>
   {% endif %}
 {% endblock %}

@@ -1,18 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Home Page</h1>
+  <h1 class="mb-4">Dashboard</h1>
 
-  <p>Welcome to IT Company tasks manager!</p>
-  <h2>Dynamic content</h2>
-  <p>The IT Company has the following record counts:</p>
-  <ul>
-    <li><strong>Workers:</strong> {{ num_worker }}</li>
-    <li><strong>Tasks:</strong> {{ num_tasks }}</li>
-    <li><strong>Positions:</strong> {{ num_position }}</li>
-  </ul>
-  <p>You have visited this page
-    {{ num_visits }} time{{ num_visits|pluralize }}.
-  </p>
+  <div class="row mb-4">
 
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Workers</h5>
+          <h2>{{ num_worker }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Tasks</h5>
+          <h2>{{ num_tasks }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Positions</h5>
+          <h2>{{ num_position }}</h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h4>Welcome</h4>
+      <p>
+        IT Company Task Manager helps manage workers, positions,
+        task types and project tasks.
+      </p>
+
+      <p>
+        You visited this page
+        <strong>{{ num_visits }}</strong>
+        time{{ num_visits|pluralize }}.
+      </p>
+    </div>
+  </div>
 {% endblock %}

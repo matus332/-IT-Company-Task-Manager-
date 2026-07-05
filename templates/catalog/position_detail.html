@@ -1,22 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    Position detail
-    <a href="{% url 'catalog:position-update' pk=position.pk %}" class="btn btn-warning">Update</a>
-    <a href="{% url 'catalog:position-delete' pk=position.pk %}" class="btn btn-danger">Delete</a>
-  </h1>
-  
-  <ul>
-    <li>{{ position.name }}</li>
-    <li>Workers with this position</li>
-    <ul>
-      {% for worker in position.workers.all %}
-        <li><a href="{% url 'catalog:worker-detail' pk=worker.pk %}">{{ worker.username }}</a></li>
-      {% empty %}
-        <li>No workers</li>
-      {% endfor %}
-    </ul>
-  </ul>
-  
+  <div class="page-header">
+    <h1>{{ position.name }}</h1>
+
+    <div>
+      <a href="{% url 'catalog:position-update' pk=position.pk %}" class="btn btn-warning">
+        Update
+      </a>
+      <a href="{% url 'catalog:position-delete' pk=position.pk %}" class="btn btn-danger">
+        Delete
+      </a>
+      <a href="{% url 'catalog:position-list' %}" class="btn btn-secondary">
+        Back
+      </a>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Position information</h5>
+      <p><strong>Name:</strong> {{ position.name }}</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Workers with this position</h5>
+
+      <ul class="list-group">
+        {% for worker in position.workers.all %}
+          <li class="list-group-item">
+            <a href="{% url 'catalog:worker-detail' pk=worker.pk %}">
+              {{ worker.username }}
+            </a>
+          </li>
+        {% empty %}
+          <li class="list-group-item">No workers with this position.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
 {% endblock %}
