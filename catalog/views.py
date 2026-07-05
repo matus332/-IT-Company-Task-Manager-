@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -24,84 +24,84 @@ def index(request):
     return render(request, "catalog/index.html", context=context)
 
 
-class WorkerListView(generic.ListView):
+class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     queryset = Worker.objects.all().select_related("position")
 
 
-class WorkerCreateView(generic.CreateView):
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
     form_class = WorkerCreationForm
     success_url = reverse_lazy("catalog:worker-list")
 
 
-class WorkerDetailView(generic.DetailView):
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
 
 
-class WorkerUpdateView(generic.UpdateView):
+class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
     fields = ("username", "first_name", "last_name", "email", "position")
     success_url = reverse_lazy("catalog:worker-list")
 
 
-class WorkerDeleteView(generic.DeleteView):
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("catalog:worker-list")
 
 
-class TaskTypesListView(generic.ListView):
+class TaskTypesListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     context_object_name = "task_types"
 
 
-class TaskTypeCreateView(generic.CreateView):
+class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
     fields = "__all__"
     success_url = reverse_lazy("catalog:task-type-list")
 
 
-class TaskTypeDetailView(generic.DetailView):
+class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = TaskType
 
 
-class TaskTypeUpdateView(generic.UpdateView):
+class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
     fields = "__all__"
     success_url = reverse_lazy("catalog:task-type-list")
 
 
-class TaskTypeDeleteView(generic.DeleteView):
+class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TaskType
     success_url = reverse_lazy("catalog:task-type-list")
 
 
-class PositionListView(generic.ListView):
+class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
 
 
-class PositionCreateView(generic.CreateView):
-    model = Position
-    fields = "__all__"
-    success_url = reverse_lazy("catalog:position-list")
-
-
-class PositionDetailView(generic.DetailView):
-    model = Position
-
-
-class PositionUpdateView(generic.UpdateView):
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
     fields = "__all__"
     success_url = reverse_lazy("catalog:position-list")
 
 
-class PositionDeleteView(generic.DeleteView):
+class PositionDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Position
+
+
+class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:position-list")
+
+
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Position
     success_url = reverse_lazy("catalog:position-list")
 
 
-class TaskListView(generic.ListView):
+class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     queryset = (
         Task.objects
@@ -110,22 +110,22 @@ class TaskListView(generic.ListView):
     )
 
 
-class TaskCreateView(generic.CreateView):
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     fields = "__all__"
     success_url = reverse_lazy("catalog:task-list")
 
 
-class TaskDetailView(generic.DetailView):
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
 
 
-class TaskUpdateView(generic.UpdateView):
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     fields = "__all__"
     success_url = reverse_lazy("catalog:task-list")
 
 
-class TaskDeleteView(generic.DeleteView):
+class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy("catalog:task-list")
