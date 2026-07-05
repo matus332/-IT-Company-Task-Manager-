@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Worker detail</h1>
+  <h1>
+    Worker detail
+    <a href="{% url 'catalog:worker-update' pk=worker.pk %}" class="btn btn-warning">Update</a>
+  </h1>
   
   <ul>
     <li>{{ worker.username }}</li>

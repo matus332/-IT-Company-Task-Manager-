@@ -29,13 +29,19 @@ class WorkerListView(generic.ListView):
     queryset = Worker.objects.all().select_related("position")
 
 
+class WorkerCreateView(generic.CreateView):
+    model = Worker
+    form_class = WorkerCreationForm
+    success_url = reverse_lazy("catalog:worker-list")
+
+
 class WorkerDetailView(generic.DetailView):
     model = Worker
 
 
-class WorkerCreateView(generic.CreateView):
+class WorkerUpdateView(generic.UpdateView):
     model = Worker
-    form_class = WorkerCreationForm
+    fields = ("username", "first_name", "last_name", "email", "position")
     success_url = reverse_lazy("catalog:worker-list")
 
 
@@ -44,11 +50,17 @@ class TaskTypesListView(generic.ListView):
     context_object_name = "task_types"
 
 
+class TaskTypeCreateView(generic.CreateView):
+    model = TaskType
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:task-type-list")
+
+
 class TaskTypeDetailView(generic.DetailView):
     model = TaskType
 
 
-class TaskTypeCreateView(generic.CreateView):
+class TaskTypeUpdateView(generic.UpdateView):
     model = TaskType
     fields = "__all__"
     success_url = reverse_lazy("catalog:task-type-list")
@@ -58,11 +70,17 @@ class PositionListView(generic.ListView):
     model = Position
 
 
+class PositionCreateView(generic.CreateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:position-list")
+
+
 class PositionDetailView(generic.DetailView):
     model = Position
 
 
-class PositionCreateView(generic.CreateView):
+class PositionUpdateView(generic.UpdateView):
     model = Position
     fields = "__all__"
     success_url = reverse_lazy("catalog:position-list")
@@ -73,11 +91,17 @@ class TaskListView(generic.ListView):
     queryset = Task.objects.select_related("task_type").prefetch_related("assignees")
 
 
+class TaskCreateView(generic.CreateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:task-list")
+
+
 class TaskDetailView(generic.DetailView):
     model = Task
 
 
-class TaskCreateView(generic.CreateView):
+class TaskUpdateView(generic.UpdateView):
     model = Task
     fields = "__all__"
     success_url = reverse_lazy("catalog:task-list")
