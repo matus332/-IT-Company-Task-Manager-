@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Positions</h1>
+  <h1>
+    Positions
+    <a href="{% url 'catalog:position-create' %}">+</a>
+  </h1>
 
   {% if position_list %}
     <ul>

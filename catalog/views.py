@@ -1,7 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
+from catalog.forms import WorkerCreationForm
 from catalog.models import Task, Worker, Position, TaskType
 
 
@@ -31,12 +33,10 @@ class WorkerDetailView(generic.DetailView):
     model = Worker
 
 
-class PositionListView(generic.ListView):
-    model = Position
-
-
-class PositionDetailView(generic.DetailView):
-    model = Position
+class WorkerCreateView(generic.CreateView):
+    model = Worker
+    form_class = WorkerCreationForm
+    success_url = reverse_lazy("catalog:worker-list")
 
 
 class TaskTypesListView(generic.ListView):
@@ -48,6 +48,26 @@ class TaskTypeDetailView(generic.DetailView):
     model = TaskType
 
 
+class TaskTypeCreateView(generic.CreateView):
+    model = TaskType
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:task-type-list")
+
+
+class PositionListView(generic.ListView):
+    model = Position
+
+
+class PositionDetailView(generic.DetailView):
+    model = Position
+
+
+class PositionCreateView(generic.CreateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:position-list")
+
+
 class TaskListView(generic.ListView):
     model = Task
     queryset = Task.objects.select_related("task_type").prefetch_related("assignees")
@@ -55,3 +75,9 @@ class TaskListView(generic.ListView):
 
 class TaskDetailView(generic.DetailView):
     model = Task
+
+
+class TaskCreateView(generic.CreateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:task-list")
