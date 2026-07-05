@@ -3,7 +3,13 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from catalog.forms import WorkerCreationForm
+from catalog.forms import (
+    WorkerCreationForm,
+    WorkerUpdateForm,
+    TaskForm,
+    TaskTypeForm,
+    PositionForm
+)
 from catalog.models import Task, Worker, Position, TaskType
 
 
@@ -41,7 +47,7 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
 
 class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
-    fields = ("username", "first_name", "last_name", "email", "position")
+    form_class = WorkerUpdateForm
     success_url = reverse_lazy("catalog:worker-list")
 
 
@@ -57,7 +63,7 @@ class TaskTypesListView(LoginRequiredMixin, generic.ListView):
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
-    fields = "__all__"
+    form_class = TaskTypeForm
     success_url = reverse_lazy("catalog:task-type-list")
 
 
@@ -67,7 +73,7 @@ class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
 
 class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
-    fields = "__all__"
+    form_class = TaskTypeForm
     success_url = reverse_lazy("catalog:task-type-list")
 
 
@@ -82,7 +88,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
-    fields = "__all__"
+    form_class = PositionForm
     success_url = reverse_lazy("catalog:position-list")
 
 
@@ -92,7 +98,7 @@ class PositionDetailView(LoginRequiredMixin, generic.DetailView):
 
 class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Position
-    fields = "__all__"
+    form_class = PositionForm
     success_url = reverse_lazy("catalog:position-list")
 
 
@@ -112,7 +118,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
-    fields = "__all__"
+    form_class = TaskForm
     success_url = reverse_lazy("catalog:task-list")
 
 
@@ -122,7 +128,7 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
-    fields = "__all__"
+    form_class = TaskForm
     success_url = reverse_lazy("catalog:task-list")
 
 

@@ -21,7 +21,13 @@
           <td><a href="{% url 'catalog:task-detail' pk=task.pk %}">{{ task.name }}</a></td>
           <td>{{ task.task_type }}</td>
           <td>{{ task.priority }}</td>
-          <td>{{ task.deadline }}</td>
+          <td>
+            {% if task.is_overdue %}
+              Overdue
+            {% else %}
+              {{ task.deadline }}
+            {% endif %}
+          </td>
           <td>{{ task.is_completed }}</td>
         </tr>
       {% endfor %}

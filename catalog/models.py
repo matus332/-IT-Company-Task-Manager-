@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -67,3 +69,7 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def is_overdue(self):
+        return self.deadline < date.today() and not self.is_completed
