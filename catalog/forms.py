@@ -52,6 +52,10 @@ class WorkerUpdateForm(forms.ModelForm):
         return last_name.capitalize()
 
 
+class WorkerUsernameSearchForm(forms.Form):
+    username = forms.CharField(max_length=255, required=False)
+
+
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
@@ -71,6 +75,10 @@ class TaskForm(forms.ModelForm):
         return name
 
 
+class TaskNameSearchForm(forms.Form):
+    name = forms.CharField(max_length=255, required=False)
+
+
 class PositionForm(forms.ModelForm):
     class Meta:
         model = Position
@@ -83,6 +91,10 @@ class PositionForm(forms.ModelForm):
         return name
 
 
+class PositionNameSearchForm(forms.Form):
+    name = forms.CharField(max_length=255, required=False)
+
+
 class TaskTypeForm(forms.ModelForm):
     class Meta:
         model = TaskType
@@ -93,3 +105,7 @@ class TaskTypeForm(forms.ModelForm):
         if len(name) < 3:
             raise ValidationError("Task type name must be longer than three characters")
         return name
+
+
+class TaskTypeNameSearchForm(forms.Form):
+    name = forms.CharField(max_length=255, required=False)

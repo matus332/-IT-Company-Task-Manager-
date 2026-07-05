@@ -16,7 +16,7 @@ from catalog.views import (
     PositionDetailView,
     PositionUpdateView,
     PositionDeleteView,
-    TaskTypesListView,
+    TaskTypeListView,
     TaskTypeCreateView,
     TaskTypeDetailView,
     TaskTypeUpdateView,
@@ -43,7 +43,7 @@ urlpatterns = [
     path("positions/<int:pk>/update/", PositionUpdateView.as_view(), name="position-update"),
     path("positions/<int:pk>/delete/", PositionDeleteView.as_view(), name="position-delete"),
     # TASKTYPES
-    path("task-types/", TaskTypesListView.as_view(), name="task-type-list"),
+    path("task-types/", TaskTypeListView.as_view(), name="task-type-list"),
     path("task-types/create/", TaskTypeCreateView.as_view(), name="task-type-create"),
     path("task-types/<int:pk>/", TaskTypeDetailView.as_view(), name="task-type-detail"),
     path("task-types/<int:pk>/update/", TaskTypeUpdateView.as_view(), name="task-type-update"),

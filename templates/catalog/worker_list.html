@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>
@@ -6,6 +7,11 @@
     <a href="{% url 'catalog:worker-create' %}">+</a>
   </h1>
 
+  <form method="get" action="">
+    {{ search_form|crispy }}
+    <input type="submit" value="Search" class="btn btn-primary">
+  </form>
+  
   {% if worker_list %}
     <table class="table table-striped table-bordered">
       <tr>
