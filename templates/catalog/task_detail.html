@@ -4,6 +4,7 @@
   <h1>
     Task detail
     <a href="{% url 'catalog:task-update' pk=task.pk %}" class="btn btn-warning">Update</a>
+    <a href="{% url 'catalog:task-delete' pk=task.pk %}" class="btn btn-danger">Delete</a>
   </h1>
   
   <ul>

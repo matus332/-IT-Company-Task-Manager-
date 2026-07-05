@@ -4,6 +4,7 @@
   <h1>
     TaskType detail
     <a href="{% url 'catalog:task-type-update' pk=tasktype.pk %}" class="btn btn-warning">Update</a>
+    <a href="{% url 'catalog:task-type-delete' pk=tasktype.pk %}" class="btn btn-danger">Delete</a>
   </h1>
   
   <ul>

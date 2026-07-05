@@ -45,6 +45,11 @@ class WorkerUpdateView(generic.UpdateView):
     success_url = reverse_lazy("catalog:worker-list")
 
 
+class WorkerDeleteView(generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("catalog:worker-list")
+
+
 class TaskTypesListView(generic.ListView):
     model = TaskType
     context_object_name = "task_types"
@@ -63,6 +68,11 @@ class TaskTypeDetailView(generic.DetailView):
 class TaskTypeUpdateView(generic.UpdateView):
     model = TaskType
     fields = "__all__"
+    success_url = reverse_lazy("catalog:task-type-list")
+
+
+class TaskTypeDeleteView(generic.DeleteView):
+    model = TaskType
     success_url = reverse_lazy("catalog:task-type-list")
 
 
@@ -86,9 +96,18 @@ class PositionUpdateView(generic.UpdateView):
     success_url = reverse_lazy("catalog:position-list")
 
 
+class PositionDeleteView(generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("catalog:position-list")
+
+
 class TaskListView(generic.ListView):
     model = Task
-    queryset = Task.objects.select_related("task_type").prefetch_related("assignees")
+    queryset = (
+        Task.objects
+        .select_related("task_type")
+        .prefetch_related("assignees")
+    )
 
 
 class TaskCreateView(generic.CreateView):
@@ -104,4 +123,9 @@ class TaskDetailView(generic.DetailView):
 class TaskUpdateView(generic.UpdateView):
     model = Task
     fields = "__all__"
+    success_url = reverse_lazy("catalog:task-list")
+
+
+class TaskDeleteView(generic.DeleteView):
+    model = Task
     success_url = reverse_lazy("catalog:task-list")
