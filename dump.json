@@ -81,6 +81,25 @@
   }
 },
 {
+  "model": "catalog.worker",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Ab08EQ97GfIX74y8yOz6XW$UAv3Ir5DJAu8/S/kURchj2qT/JycNkpIw/swueCowoE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-08T16:40:18.335Z",
+    "position": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "catalog.task",
   "pk": 1,
   "fields": {
