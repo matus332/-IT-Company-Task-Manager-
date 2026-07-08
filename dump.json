@@ -1,105 +1,113 @@
 [
 {
-    "model": "catalog.tasktype",
-    "pk": 1,
-    "fields": {
-        "name": "Bug"
-    }
+  "model": "sessions.session",
+  "pk": "0tebd0ksq31a9xuwixaus3b00qg6m5iw",
+  "fields": {
+    "session_data": "eyJudW1fdmlzaXRzIjoxfQ:1whSNY:W836GKM8LvXQRGSOD52K5bGzkArjuT3weip5CcBQjzY",
+    "expire_date": "2026-07-22T13:31:56.657Z"
+  }
 },
 {
-    "model": "catalog.tasktype",
-    "pk": 2,
-    "fields": {
-        "name": "Breaking change"
-    }
+  "model": "catalog.tasktype",
+  "pk": 1,
+  "fields": {
+    "name": "Bug"
+  }
 },
 {
-    "model": "catalog.position",
-    "pk": 1,
-    "fields": {
-        "name": "Developer"
-    }
+  "model": "catalog.tasktype",
+  "pk": 2,
+  "fields": {
+    "name": "Breaking change"
+  }
 },
 {
-    "model": "catalog.position",
-    "pk": 2,
-    "fields": {
-        "name": "QA"
-    }
+  "model": "catalog.position",
+  "pk": 1,
+  "fields": {
+    "name": "Developer"
+  }
 },
 {
-    "model": "catalog.position",
-    "pk": 3,
-    "fields": {
-        "name": "Designer"
-    }
+  "model": "catalog.position",
+  "pk": 2,
+  "fields": {
+    "name": "QA"
+  }
 },
 {
-    "model": "catalog.worker",
-    "pk": 1,
-    "fields": {
-        "password": "pbkdf2_sha256$1200000$JRCh917eDcoygSFbUZXqOU$HWoCqnPPby03lPSC7/ip2XaWbICrug2VzL/SVYFMsXg=",
-        "last_login": "2026-07-05T16:09:44.860Z",
-        "is_superuser": true,
-        "username": "admin",
-        "first_name": "Test",
-        "last_name": "Test",
-        "email": "admin@admin.com",
-        "is_staff": true,
-        "is_active": true,
-        "date_joined": "2026-07-04T12:05:04Z",
-        "position": 1,
-        "groups": [],
-        "user_permissions": []
-    }
+  "model": "catalog.position",
+  "pk": 3,
+  "fields": {
+    "name": "Designer"
+  }
 },
 {
-    "model": "catalog.worker",
-    "pk": 9,
-    "fields": {
-        "password": "pbkdf2_sha256$1200000$bhuNBc3COnLxiowUxP3W1u$KsGuHI7U0xAcsTQgN8AX5I0VDErE6RKnJ/z/WZZX+jM=",
-        "last_login": null,
-        "is_superuser": false,
-        "username": "Test",
-        "first_name": "Test",
-        "last_name": "Test",
-        "email": "test@test.com",
-        "is_staff": false,
-        "is_active": true,
-        "date_joined": "2026-07-05T11:52:48.339Z",
-        "position": 2,
-        "groups": [],
-        "user_permissions": []
-    }
+  "model": "catalog.worker",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$JRCh917eDcoygSFbUZXqOU$HWoCqnPPby03lPSC7/ip2XaWbICrug2VzL/SVYFMsXg=",
+    "last_login": "2026-07-05T16:09:44.860Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "Test",
+    "last_name": "Test",
+    "email": "admin@admin.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-04T12:05:04Z",
+    "position": 1,
+    "groups": [],
+    "user_permissions": []
+  }
 },
 {
-    "model": "catalog.task",
-    "pk": 1,
-    "fields": {
-        "name": "Fix bugs in Project",
-        "description": "Need to fix all bugs in django.",
-        "deadline": "2026-07-04",
-        "is_completed": false,
-        "priority": "high",
-        "task_type": 1,
-        "assignees": [
-            1
-        ]
-    }
+  "model": "catalog.worker",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$bhuNBc3COnLxiowUxP3W1u$KsGuHI7U0xAcsTQgN8AX5I0VDErE6RKnJ/z/WZZX+jM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Test",
+    "first_name": "Test",
+    "last_name": "Test",
+    "email": "test@test.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-05T11:52:48.339Z",
+    "position": 2,
+    "groups": [],
+    "user_permissions": []
+  }
 },
 {
-    "model": "catalog.task",
-    "pk": 6,
-    "fields": {
-        "name": "TEST",
-        "description": "ear",
-        "deadline": "2026-07-07",
-        "is_completed": false,
-        "priority": "medium",
-        "task_type": 1,
-        "assignees": [
-            9
-        ]
-    }
+  "model": "catalog.task",
+  "pk": 1,
+  "fields": {
+    "name": "Fix bugs in Project",
+    "description": "Need to fix all bugs in django.",
+    "deadline": "2026-07-04",
+    "is_completed": false,
+    "priority": "high",
+    "task_type": 1,
+    "assignees": [
+      1
+    ]
+  }
+},
+{
+  "model": "catalog.task",
+  "pk": 6,
+  "fields": {
+    "name": "TEST",
+    "description": "ear",
+    "deadline": "2026-07-07",
+    "is_completed": false,
+    "priority": "medium",
+    "task_type": 1,
+    "assignees": [
+      9
+    ]
+  }
 }
 ]
