@@ -2,6 +2,10 @@
 
 Django web application for managing workers, positions, task types, and tasks inside an IT company.
 
+## Live Demo
+
+https://it-company-task-manager-aknq.onrender.com
+
 ## Demo User
 
 Login: user
