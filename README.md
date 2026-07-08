@@ -2,6 +2,11 @@
 
 Django web application for managing workers, positions, task types, and tasks inside an IT company.
 
+## Demo User
+
+Login: user
+Password: user12345
+
 ## Features
 
 - User authentication (Login / Logout)
